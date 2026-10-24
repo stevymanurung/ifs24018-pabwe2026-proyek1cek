@@ -1,0 +1,11 @@
+{
+  "installCommand": "npm --prefix frontend/ifs24018-pabwe2026-proyek1 install --include=dev",
+  "buildCommand": "npm --prefix frontend/ifs24018-pabwe2026-proyek1 run build",
+  "outputDirectory": "frontend/ifs24018-pabwe2026-proyek1/dist",
+  "rewrites": [
+    {
+      "source": "/((?!api/).*)",
+      "destination": "/index.html"
+    }
+  ]
+}
