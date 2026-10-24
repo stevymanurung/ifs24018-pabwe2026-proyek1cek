@@ -27,7 +27,7 @@ Frontend dapat dijalankan dengan Bun. Koneksi database memilih driver yang sesua
 Backend harus berjalan pada service terpisah; Vercel hanya menjadi frontend dan proxy API. Contoh konfigurasi yang digunakan proyek ini:
 
 1. Buat service Railway dari repository dan atur **Root Directory** ke `backend/ifs24018-pabwe2026-proyek1`. Service memakai `Dockerfile` di folder ini.
-2. Tambahkan Railway Volume dengan **mount path** `/data`, lalu set variable `DB_FILE=/data/planner.db`.
+2. Tambahkan Railway Volume dengan **mount path** `/data`, lalu set variable `DB_FILE=/data/planner.db`. Railway mengisi `PORT` secara otomatis; jangan hard-code nilainya.
 3. Deploy service dan pastikan `https://<domain-backend>/api/health` mengembalikan `{"status":"ok"}`.
 4. Pada Vercel, atur **Root Directory** ke `frontend/ifs24018-pabwe2026-proyek1`. Tambahkan environment variable `BACKEND_API_URL` berisi origin backend Railway, misalnya `https://study-planner-api.up.railway.app` tanpa `/api`.
 5. Redeploy Vercel setelah mengatur variable. Request `/api/*` dari browser akan diproxy ke backend.
