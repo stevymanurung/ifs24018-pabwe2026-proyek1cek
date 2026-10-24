@@ -2,12 +2,12 @@
   "name": "ifs24018-pabwe2026-proyek1",
   "version": "1.0.0",
   "private": true,
-  "description": "Study Planner - PABWE 2026 Proyek 1 (Bun, React, Vite, Express, SQLite)",
+  "description": "Study Planner - PABWE 2026 Proyek 1 (Bun, Node.js, React, Vite, Express, SQLite)",
   "scripts": {
     "install:all": "bun install && bun --cwd frontend/ifs24018-pabwe2026-proyek1 install && bun --cwd backend/ifs24018-pabwe2026-proyek1 install",
-    "dev": "concurrently -k -n API,WEB -c blue,green \"bun --cwd backend/ifs24018-pabwe2026-proyek1 run dev\" \"bun --cwd frontend/ifs24018-pabwe2026-proyek1 run dev\"",
+    "dev": "concurrently -k -n API,WEB -c blue,green \"npm --prefix backend/ifs24018-pabwe2026-proyek1 run dev\" \"npm --prefix frontend/ifs24018-pabwe2026-proyek1 run dev\"",
     "dev:frontend": "bun --cwd frontend/ifs24018-pabwe2026-proyek1 run dev",
-    "dev:backend": "bun --cwd backend/ifs24018-pabwe2026-proyek1 run dev",
+    "dev:backend": "npm --prefix backend/ifs24018-pabwe2026-proyek1 run dev",
     "build": "bun --cwd frontend/ifs24018-pabwe2026-proyek1 run build",
     "test:frontend": "bun --cwd frontend/ifs24018-pabwe2026-proyek1 run test",
     "test:backend": "bun --cwd backend/ifs24018-pabwe2026-proyek1 run test"

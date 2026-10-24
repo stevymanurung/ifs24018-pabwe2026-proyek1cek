@@ -3,7 +3,8 @@
 Study Planner full-stack project. Frontend and backend stay in one repository/ZIP but in separate folders.
 
 ## Requirements
-- Bun 1.1 or newer
+- Bun 1.1 or newer (frontend/tooling)
+- Node.js 22.9 or newer (backend with `better-sqlite3`), or Bun 1.1 or newer
 
 ## Install dependencies
 Run from this project root:
@@ -21,7 +22,7 @@ Run from this project root:
 bun run dev
 ```
 
-The frontend is at http://localhost:5173 and the API is at http://localhost:3001.
+The frontend is at http://localhost:5173 and the API is at http://localhost:3001. The backend supports both Node.js and Bun, selecting the SQLite driver for its runtime.
 The Vite development server proxies `/api` requests to the backend.
 
 ## Run separately

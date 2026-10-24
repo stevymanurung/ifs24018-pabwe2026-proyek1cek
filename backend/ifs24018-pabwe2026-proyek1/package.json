@@ -5,12 +5,12 @@
   "type": "module",
   "description": "REST API Study Planner (Express.js + SQLite)",
   "scripts": {
-    "start": "bun src/index.js",
-    "dev": "bun --watch src/index.js",
-    "seed": "bun src/db/seed.js",
-    "test": "bun --test",
-    "test:ci": "bun --test --reporter=junit",
-    "test:v1": "bun --test evidence/run-v1-api.js"
+    "start": "node --env-file-if-exists=.env src/index.js",
+    "dev": "node --env-file-if-exists=.env --watch src/index.js",
+    "seed": "node --env-file-if-exists=.env src/db/seed.js",
+    "test": "node --test",
+    "test:ci": "node --test --test-reporter=junit",
+    "test:v1": "node --test evidence/run-v1-api.js"
   },
   "dependencies": {
     "better-sqlite3": "^12.11.1",
@@ -19,6 +19,6 @@
     "zod": "^3.24.1"
   },
   "engines": {
-    "bun": ">=1.1.0"
+    "node": ">=22.9.0"
   }
 }

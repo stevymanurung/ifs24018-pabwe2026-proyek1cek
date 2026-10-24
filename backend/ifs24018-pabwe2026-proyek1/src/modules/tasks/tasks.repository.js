@@ -10,7 +10,7 @@ const toTask = (row) => ({
 export function createTaskRepository(db) {
   const selectAll = db.prepare('SELECT * FROM tasks WHERE user_id = ? ORDER BY done, CASE WHEN due_date = \'\' THEN 1 ELSE 0 END, due_date, id');
   const selectById = db.prepare('SELECT * FROM tasks WHERE id = ? AND user_id = ?');
-  const insert = db.prepare('INSERT INTO tasks (user_id, title, course, due_date, remind_at) VALUES (@userId, @title, @course, @dueDate, @remindAt)');
+  const insert = db.prepare('INSERT INTO tasks (user_id, title, course, due_date, remind_at) VALUES (?, ?, ?, ?, ?)');
   const updateDone = db.prepare('UPDATE tasks SET done = ? WHERE id = ? AND user_id = ?');
   const deleteById = db.prepare('DELETE FROM tasks WHERE id = ? AND user_id = ?');
 
@@ -21,7 +21,7 @@ export function createTaskRepository(db) {
       return row ? toTask(row) : null;
     },
     create(task, userId = 1) {
-      const { lastInsertRowid } = insert.run({ ...task, userId });
+      const { lastInsertRowid } = insert.run(userId, task.title, task.course, task.dueDate, task.remindAt);
       return toTask(selectById.get(lastInsertRowid, userId));
     },
     setDone(id, done, userId = 1) {

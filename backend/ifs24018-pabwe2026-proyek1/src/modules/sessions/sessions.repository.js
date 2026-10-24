@@ -4,7 +4,7 @@ const toSession = (row) => ({ id: row.id, course: row.course, day: row.day, star
 export function createSessionRepository(db) {
   const selectAll = db.prepare('SELECT * FROM sessions WHERE user_id = ? ORDER BY day, start_time, id');
   const selectById = db.prepare('SELECT * FROM sessions WHERE id = ? AND user_id = ?');
-  const insert = db.prepare('INSERT INTO sessions (user_id, course, day, start_time, end_time, room) VALUES (@userId, @course, @day, @start, @end, @room)');
+  const insert = db.prepare('INSERT INTO sessions (user_id, course, day, start_time, end_time, room) VALUES (?, ?, ?, ?, ?, ?)');
   const deleteById = db.prepare('DELETE FROM sessions WHERE id = ? AND user_id = ?');
 
   return {
@@ -14,7 +14,7 @@ export function createSessionRepository(db) {
       return row ? toSession(row) : null;
     },
     create(session, userId = 1) {
-      const { lastInsertRowid } = insert.run({ ...session, userId });
+      const { lastInsertRowid } = insert.run(userId, session.course, session.day, session.start, session.end, session.room);
       return toSession(selectById.get(lastInsertRowid, userId));
     },
     remove: (id, userId = 1) => deleteById.run(id, userId).changes > 0,

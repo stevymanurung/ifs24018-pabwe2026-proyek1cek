@@ -42,7 +42,7 @@ export function seedDemoData(db) {
   return true;
 }
 
-// Dijalankan langsung: `npm run seed`
+// Dijalankan langsung: `node --env-file-if-exists=.env src/db/seed.js`
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
   const db = openDatabase(config.dbFile);
   logger.info(seedDemoData(db) ? 'Data contoh dimasukkan.' : 'Database sudah berisi data; seed dilewati.');
